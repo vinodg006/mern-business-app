@@ -1,0 +1,562 @@
+{
+	"info": {
+		"_postman_id": "fe6008de-e2a3-45cc-a1e1-67cb0f62dd18",
+		"name": "Business",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Vinod4\",\r\n    \"email\": \"vinod4@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE1NDg1MTgsImV4cCI6MTY3MTU1NDUxOH0.r7zVlUsyadBtu06SSaTwePtSXR2DkEMWVFgWa70nBDU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"vinod@gmail.com\",\r\n    \"password\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/63a2f5c3e8bb8ee5b451f4b4",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"63a2f5c3e8bb8ee5b451f4b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user/63a2f5c3e8bb8ee5b451f4b4",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"63a2f5c3e8bb8ee5b451f4b4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Businesses",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MzYyMzUsImV4cCI6MTY3MTY3MjIzNX0.Z8P2FR5ppw2OAhTimTiHKATV5IUFcptyHpsFR0MMszo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a324aa4b6735d4fcab8937",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Business 1 Vinod4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/business",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE1NDAzNjgsImV4cCI6MTY3MTU0MDQyOH0.FIJR5zRcVM1w72QzB0SD3QjAafd9S7rHxEQf-1mGlK0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"B13\",\r\n    \"description\": \"23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/business/63a17d58e88ed7b04fa32827",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"business",
+								"63a17d58e88ed7b04fa32827"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a1791e699b6dc1a93a372a",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"B13\",\r\n    \"description\": \"23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/business/63a17d58e88ed7b04fa32827",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"business",
+								"63a17d58e88ed7b04fa32827"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a1791e699b6dc1a93a372a",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"B13\",\r\n    \"description\": \"23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/business/63a17d58e88ed7b04fa32827",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"business",
+								"63a17d58e88ed7b04fa32827"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MzQ2MzEsImV4cCI6MTY3MTY3MDYzMX0.C8XcWLO1BAni7D50IYJCr2_mgYCgqH_HYhwgKCkdqVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a2f65de8bb8ee5b451f4bf",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/business?limit=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"business"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tenant",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a2cdd0bc4cda915a6eaf56",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "x-business-id",
+								"value": "63a2cea99284cc66412ded08",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tenant2\",\r\n    \"userId\": \"63a1939216be8dfe1978017a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/tenant",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"tenant"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Channel",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MzY1MzgsImV4cCI6MTY3MTY3MjUzOH0.1hgK7iKO5xWEGXfeijT9TYmmH6A4A6cUDsr7rDMff3c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a324aa4b6735d4fcab8937",
+								"type": "default"
+							},
+							{
+								"key": "x-business-id",
+								"value": "63a325544b6735d4fcab893f",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"platform\": \"facebook\",\r\n    \"authType\": \"apiKey\",\r\n    \"auth\": {\r\n        \"type\": \"apiKey\",\r\n        \"value\": \"123456\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/channel",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"channel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MjMzMjAsImV4cCI6MTY3MTY1OTMyMH0.tthNqfgFxEXvr8tJR-_T3kmz2OzAvcI2QhJTxzSWwM0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a2f640e8bb8ee5b451f4ba",
+								"type": "default"
+							},
+							{
+								"key": "x-business-id",
+								"value": "63a2f6dfe8bb8ee5b451f4c5",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"B13\",\r\n    \"description\": \"23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/channel?limit=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"channel"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MjQ4MTcsImV4cCI6MTY3MTY2MDgxN30.gn8-Gg40sKIPlX_GWCvYbgHM85dmuWqkN_FkHfrWIzs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a2f65de8bb8ee5b451f4bf",
+								"type": "default"
+							},
+							{
+								"key": "x-channel-id",
+								"value": "63a2f81de8bb8ee5b451f4db",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"platform\": \"facebook\",\r\n  \"rating\": 4,\r\n  \"review\": \"This is a great product!\",\r\n  \"createdAt\":\"2022-01-01T00:00:00.000Z\",\r\n  \"reviewer\": {\r\n    \"name\": \"Rocky\",\r\n    \"email\": \"rocky@example.com\"\r\n  },\r\n  \"responses\": [\r\n    {\r\n      \"createdAt\": \"2022-01-02T00:00:00.000Z\",\r\n      \"response\": \"Thank you for your positive review!\"\r\n    }\r\n  ],\r\n  \"sentiment\": \"positive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/review",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzE2MjQwNDYsImV4cCI6MTY3MTY2MDA0Nn0.pNzXKx_XOkGT669Ec1iSdXzcVHlMVkf8RYpT_sMhcC4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tenant-id",
+								"value": "63a2f640e8bb8ee5b451f4ba",
+								"type": "default"
+							},
+							{
+								"key": "x-channel-id",
+								"value": "63a2f7cbe8bb8ee5b451f4d3",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/review?limit=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"review"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
