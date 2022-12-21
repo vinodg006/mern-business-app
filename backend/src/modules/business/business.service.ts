@@ -1,31 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { ClientSession, Schema as MongooseSchema } from 'mongoose';
 import { GetQueryDto } from 'src/dto/getQueryDto';
-import { ProductRepository } from '../../repositories/business.repository';
+import { BusinessRepository } from '../../repositories/business.repository';
 import { CreateBusinessDto } from './dto/createBusiness.dto';
 import { UpdateBusinessDto } from './dto/updateBusiness.dto';
 
 @Injectable()
-export class ProductService {
-    constructor(private productRepository: ProductRepository) { }
+export class BusinessService {
+    constructor(private businessRepository: BusinessRepository) { }
 
-    async createProduct(createBusinesstDto: CreateBusinessDto, session: ClientSession) {
-        return await this.productRepository.createProduct(createBusinesstDto, session);
+    async createBusiness(createBusinesstDto: CreateBusinessDto, session: ClientSession) {
+        return await this.businessRepository.createBusiness(createBusinesstDto, session);
     }
 
-    async getProductById(productId: MongooseSchema.Types.ObjectId) {
-        return await this.productRepository.getProductById(productId);
+    async getBusinessById(businessId: MongooseSchema.Types.ObjectId) {
+        return await this.businessRepository.getBusinessById(businessId);
     }
 
-    async getProducts(getQueryDto: GetQueryDto, tenant_id: string) {
-        return await this.productRepository.getProducts(getQueryDto, tenant_id);
+    async getBusinesss(getQueryDto: GetQueryDto, tenant_id: string) {
+        return await this.businessRepository.getBusinesss(getQueryDto, tenant_id);
     }
 
-    async updateProduct(updateBusinessDto: UpdateBusinessDto, session: ClientSession) {
-        return await this.productRepository.updateProduct(updateBusinessDto, session);
+    async updateBusiness(updateBusinessDto: UpdateBusinessDto, session: ClientSession) {
+        return await this.businessRepository.updateBusiness(updateBusinessDto, session);
     }
 
-    async deleteProductById(productId: MongooseSchema.Types.ObjectId) {
-        return await this.productRepository.deleteProductById(productId);
+    async deleteBusinessById(businessId: MongooseSchema.Types.ObjectId) {
+        return await this.businessRepository.deleteBusinessById(businessId);
     }
 }

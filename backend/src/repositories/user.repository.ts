@@ -105,9 +105,9 @@ export class UserRepository {
             updatedAt: actualDate,
         };
 
-        let product;
+        let business;
         try {
-            product = await this.userModel
+            business = await this.userModel
                 .findOneAndUpdate({ _id: updateUser.id }, updateData, {
                     new: true,
                 })
@@ -117,10 +117,10 @@ export class UserRepository {
             throw new InternalServerErrorException(error);
         }
 
-        if (!product) {
-            throw new ConflictException('Error trying to update product');
+        if (!business) {
+            throw new ConflictException('Error trying to update business');
         }
 
-        return product;
+        return business;
     }
 }

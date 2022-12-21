@@ -5,54 +5,54 @@ import { GetQueryDto } from '../dto/getQueryDto';
 import { ResponseDto } from '../dto/response.dto';
 import { Tenant } from '../entities/tenant.entity';
 
-export class ClientRepository {
+export class TenantRepository {
     constructor(
         @InjectModel(Tenant.name)
-        private readonly clientModel: Model<Tenant>,
+        private readonly tenantModel: Model<Tenant>,
     ) { }
 
-    async createClient(createClientDto: any, session: ClientSession) {
-        let client = await this.getClientByName(createClientDto.name);
+    async createTenant(createTenantDto: any, session: ClientSession) {
+        let tenant = await this.getTenantByName(createTenantDto.name);
 
-        // if (client) {
+        // if (tenant) {
         //     throw new ConflictException('Tenant Already Exists!');
         // }
 
-        client = new this.clientModel({
-            name: createClientDto.name,
-            user: createClientDto.userId,
+        tenant = new this.tenantModel({
+            name: createTenantDto.name,
+            user: createTenantDto.userId,
         });
 
         try {
-            client = await client.save({ session });
+            tenant = await tenant.save({ session });
         } catch (error) {
             throw new InternalServerErrorException('Error al consultar la BD', error);
         }
 
-        return client;
+        return tenant;
     }
 
-    async getClients(query: GetQueryDto) {
+    async getTenants(query: GetQueryDto) {
         let from = query.from || 0;
         from = Number(from);
 
         let limit = query.limit || 0;
         limit = Number(limit);
 
-        let clients: Tenant[];
+        let tenants: Tenant[];
 
         try {
             if (limit === 0) {
-                clients = await this.clientModel
+                tenants = await this.tenantModel
                     .find()
-                    .populate('client')
+                    .populate('tenant')
                     .skip(from)
                     .sort({ createdAt: -1 })
                     .exec();
             } else {
-                clients = await this.clientModel
+                tenants = await this.tenantModel
                     .find()
-                    .populate('client')
+                    .populate('tenant')
                     .skip(from)
                     .limit(limit)
                     .sort({ createdAt: -1 })
@@ -61,49 +61,49 @@ export class ClientRepository {
 
             let response: ResponseDto;
 
-            if (clients.length > 0) {
+            if (tenants.length > 0) {
                 response = {
                     ok: true,
-                    data: clients,
-                    message: 'Get Clients Ok!',
+                    data: tenants,
+                    message: 'Get Tenants Ok!',
                 };
             } else {
                 response = {
                     ok: true,
                     data: [],
-                    message: 'No hay clientes',
+                    message: 'No hay tenantes',
                 };
             }
             return response;
         } catch (error) {
-            throw new InternalServerErrorException('Error al intentar consultar los clientes', error);
+            throw new InternalServerErrorException('Error al intentar consultar los tenantes', error);
         }
     }
 
-    async getClientById(id: MongooseSchema.Types.ObjectId) {
-        let client;
+    async getTenantById(id: MongooseSchema.Types.ObjectId) {
+        let tenant;
         try {
-            client = await this.clientModel.findById(id).exec();
+            tenant = await this.tenantModel.findById(id).exec();
         } catch (error) {
-            throw new InternalServerErrorException('No existe el registro con id' + id, error);
+            throw new Error(error);
         }
 
-        if (!client) {
-            throw new NotFoundException('The client with this id does not exist');
+        if (!tenant) {
+            throw new NotFoundException('The tenant with this id does not exist');
         }
 
-        return client;
+        return tenant;
     }
 
-    async getClientByName(name: string): Promise<Tenant> {
-        let client;
+    async getTenantByName(name: string): Promise<Tenant> {
+        let tenant;
 
         try {
-            client = await this.clientModel.find({ name });
+            tenant = await this.tenantModel.find({ name });
         } catch (error) {
             throw new InternalServerErrorException('Error connecting to MongoDB', error);
         }
 
-        return client;
+        return tenant;
     }
 }

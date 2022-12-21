@@ -38,9 +38,9 @@ export class UserController {
         session.startTransaction();
         try {
             updateUserDto.id = id;
-            const newProduct: any = await this.userService.updateUser(updateUserDto, session);
+            const newBusiness: any = await this.userService.updateUser(updateUserDto, session);
             await session.commitTransaction();
-            return res.status(HttpStatus.OK).send(newProduct);
+            return res.status(HttpStatus.OK).send(newBusiness);
         } catch (error) {
             await session.abortTransaction();
             throw new BadRequestException(error);

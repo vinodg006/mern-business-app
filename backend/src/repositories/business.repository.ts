@@ -6,33 +6,33 @@ import { UpdateBusinessDto } from 'src/modules/business/dto/updateBusiness.dto';
 import { GetQueryDto } from '../dto/getQueryDto';
 import { Business } from '../entities/business.entity';
 
-export class ProductRepository {
-    constructor(@InjectModel(Business.name) private readonly productModel: Model<Business>) { }
+export class BusinessRepository {
+    constructor(@InjectModel(Business.name) private readonly businessModel: Model<Business>) { }
 
-    async createProduct(createBusinessDto: CreateBusinessDto, session: ClientSession) {
-        let product = new this.productModel(createBusinessDto);
+    async createBusiness(createBusinessDto: CreateBusinessDto, session: ClientSession) {
+        let business = new this.businessModel(createBusinessDto);
         try {
-            product = await product.save({ session });
+            business = await business.save({ session });
         } catch (error) {
             throw new InternalServerErrorException(error);
         }
 
-        return product;
+        return business;
     }
 
-    async updateProduct(updateProduct: UpdateBusinessDto, session: ClientSession) {
+    async updateBusiness(updateBusiness: UpdateBusinessDto, session: ClientSession) {
         const actualDate = new Date();
         actualDate.toUTCString();
 
         const updateData = {
-            ...updateProduct,
+            ...updateBusiness,
             updatedAt: actualDate,
         };
 
-        let product;
+        let business;
         try {
-            product = await this.productModel
-                .findOneAndUpdate({ _id: updateProduct.id }, updateData, {
+            business = await this.businessModel
+                .findOneAndUpdate({ _id: updateBusiness.id }, updateData, {
                     new: true,
                 })
                 .session(session)
@@ -41,32 +41,32 @@ export class ProductRepository {
             throw new InternalServerErrorException(error);
         }
 
-        if (!product) {
-            throw new ConflictException('Error trying to update product');
+        if (!business) {
+            throw new ConflictException('Error trying to update business');
         }
 
-        return product;
+        return business;
     }
 
-    async getProducts(query: GetQueryDto, tenant_id: string) {
+    async getBusinesss(query: GetQueryDto, tenant_id: string) {
         let from = query.from || 0;
         from = Number(from);
 
         let limit = query.limit || 0;
         limit = Number(limit);
 
-        let products: Business[];
+        let businesss: Business[];
 
         try {
             if (limit === 0) {
-                products = await this.productModel
+                businesss = await this.businessModel
                     .find()
                     .populate('user', 'name email')
                     .skip(from)
                     .sort({ createdAt: -1 })
                     .exec();
             } else {
-                products = await this.productModel
+                businesss = await this.businessModel
                     .find({ tenant_id })
                     .skip(from)
                     .limit(limit)
@@ -76,17 +76,17 @@ export class ProductRepository {
 
             let response;
 
-            if (products.length > 0) {
+            if (businesss.length > 0) {
                 response = {
                     ok: true,
-                    data: products,
-                    message: 'Get Products Ok!',
+                    data: businesss,
+                    message: 'Get Businesss Ok!',
                 };
             } else {
                 response = {
                     ok: true,
                     data: [],
-                    message: 'No hay products',
+                    message: 'No hay businesss',
                 };
             }
             return response;
@@ -95,33 +95,33 @@ export class ProductRepository {
         }
     }
 
-    async getProductById(id: MongooseSchema.Types.ObjectId) {
-        let product;
+    async getBusinessById(id: MongooseSchema.Types.ObjectId) {
+        let business;
         try {
-            product = await this.productModel.findById(id).exec();
+            business = await this.businessModel.findById(id).exec();
         } catch (error) {
             throw new InternalServerErrorException(error);
         }
 
-        if (!product) {
-            throw new NotFoundException('The product with this id does not exist');
+        if (!business) {
+            throw new NotFoundException('The business with this id does not exist');
         }
 
-        return product;
+        return business;
     }
 
-    async deleteProductById(id: MongooseSchema.Types.ObjectId) {
-        let product;
+    async deleteBusinessById(id: MongooseSchema.Types.ObjectId) {
+        let business;
         try {
-            product = await this.productModel.findById(id).remove().exec();
+            business = await this.businessModel.findById(id).remove().exec();
         } catch (error) {
             throw new InternalServerErrorException(error);
         }
 
-        if (!product) {
-            throw new NotFoundException('The product with this id does not exist');
+        if (!business) {
+            throw new NotFoundException('The business with this id does not exist');
         }
 
-        return product;
+        return business;
     }
 }
