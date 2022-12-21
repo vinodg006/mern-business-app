@@ -5,7 +5,6 @@ import { TenantMiddleware } from 'src/middlewares/tenant.middleware';
 
 import { Business, BusinessSchema } from '../../entities/business.entity';
 import { ProductRepository } from '../../repositories/business.repository';
-import { TenantModule } from '../tenant/client.module';
 import { UserModule } from '../user/user.module';
 import { BusinessController } from './business.controller';
 import { ProductService } from './business.service';

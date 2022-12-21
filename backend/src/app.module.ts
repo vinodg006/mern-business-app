@@ -9,6 +9,8 @@ import { BusinessModule } from './modules/business/business.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TenantModule } from './modules/tenant/client.module';
+import { ChannelModule } from './modules/channel/channel.module';
+import { ReviewModule } from './modules/review/review.module';
 
 @Module({
   imports: [ConfigModule,
@@ -20,7 +22,9 @@ import { TenantModule } from './modules/tenant/client.module';
     BusinessModule,
     TenantModule,
     UserModule,
-    AuthModule],
+    AuthModule,
+    ChannelModule,
+    ReviewModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -1,13 +1,18 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 
-export class CreateBusinessDto {
-
-    @IsNotEmpty()
+export class CreateChannelDto {
     tenant_id: MongooseSchema.Types.ObjectId;
 
-    @IsNotEmpty()
-    name: string;
+    business_id: MongooseSchema.Types.ObjectId;
+
+    status: string;
+
+    platform: string;
+
+    authType: string;
+
+    auth: object;
 
     @IsOptional()
     id: MongooseSchema.Types.ObjectId;

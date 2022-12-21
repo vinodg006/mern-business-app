@@ -17,7 +17,20 @@ export class UserRepository {
             throw new ConflictException('User already exists');
         }
 
-        let client = new this.tenantModel();
+        let client = new this.tenantModel({
+            name: 'tenant',
+            billing: {
+                cardNumber: '1234567890',
+                cardExpiry: Date.now(),
+                billingAddress: {
+                    street: "Street 11",
+                    city: "NYC",
+                    state: "FLorida",
+                    zip: "001246",
+                    country: "United States"
+                }
+            }
+        });
 
         try {
             client = await client.save({ session });
@@ -35,7 +48,11 @@ export class UserRepository {
             email: createUserDto.email,
             role: createUserDto.role,
             password: hash,
-            tenant_id: client.id
+            tenant_id: client.id,
+            preferences: {
+                notifications: true,
+                theme: "light"
+            }
         });
 
         try {
