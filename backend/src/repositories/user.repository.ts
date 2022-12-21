@@ -99,6 +99,13 @@ export class UserRepository {
     async updateUser(updateUser: UpdateUserDto, session: ClientSession) {
         const actualDate = new Date();
         actualDate.toUTCString();
+        if (updateUser.password) {
+            const saltOrRounds = await bcrypt.genSalt();
+            const password = updateUser.password;
+            const hash = await bcrypt.hash(password, saltOrRounds);
+            updateUser.password = hash;
+        }
+
 
         const updateData = {
             ...updateUser,
