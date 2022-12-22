@@ -9,7 +9,6 @@ export class AuthController {
     @UseGuards(AuthGuard('local'))
     @Post('/login')
     async login(@Request() req: any) {
-        // console.log('Vinod', req.user)
         return this.authService.login(req.user);
     }
 }

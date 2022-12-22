@@ -12,16 +12,19 @@ export class AuthService {
         const user = await this.usersService.findByEmail(email);
         const isMatch = user && await bcrypt.compare(pass, user.password);
         if (isMatch) {
-            const { password, ...result } = user;
+            const { password, __v, ...result } = user.toObject();
             return result;
         }
         return null;
     }
 
     async login(user: any) {
-        const payload = { email: user.email, sub: user.id, tenant_id: user?.tenant_id, role: user.role };
+        const payload = { email: user.email, sub: user.id };
+        const { password, _id: id, ...rest } = user;
+
         return {
             access_token: this.jwtService.sign(payload, { secret: jwtConstants.secret }),
+            user: { ...rest, id }
         };
     }
 }

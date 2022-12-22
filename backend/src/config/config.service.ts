@@ -23,7 +23,7 @@ export class ConfigService {
     public async getMongoConfig() {
         return {
             // uri: 'mongodb://' + this.get('MONGO_HOST') + '?replicaSet=rs' + '/' + this.get('MONGO_DATABASE'),
-            uri: 'mongodb://DESKTOP-0E0FP3P:27017,DESKTOP-0E0FP3P:27018,DESKTOP-0E0FP3P:27019?replicaSet=rs',
+            uri: this.get('MONGO_URI'),
             useNewUrlParser: true,
             useUnifiedTopology: true,
         };
