@@ -34,25 +34,30 @@
 
 @layer components{
     .background{
-        @apply bg-gradient-to-bl from-cyan-200 to-green-300 lg:h-screen w-screen flex items-center justify-center text-slate-900 dark:text-slate-200 dark:bg-gradient-to-br dark:from-green-800 dark:to-slate-600
+        @apply bg-[#151531] lg:h-screen w-screen flex items-center justify-center text-slate-900 dark:text-slate-200 dark:bg-[#151531]
     }
     .scrollbar-custom{
         @apply !scrollbar-thumb-primary !scrollbar-thin !scrollbar-track-transparent
     }
 
     .custom-input{
-        @apply py-1 px-3 bg-white dark:bg-slate-100 dark:text-slate-900 border-2 border-primary focus:outline-none focus:outline-primary w-full
+        @apply py-2 pl-5 pr-3 h-14 bg-[#F1ECF3] dark:text-slate-900 rounded-2xl border-primary focus:outline-none w-full
+    }
+
+    .link{
+        @apply text-primary hover:text-primary-hover
     }
 
     .input-group{
-        @apply flex flex-col w-full
+        @apply flex flex-col w-full space-y-4
     }
 
     .input-label{
-        @apply text-primary text-sm
+        @apply text-[#151531] text-sm font-medium	
     }
     .btn{
-        @apply py-1.5 px-3   bg-primary text-white w-full border-none  self-end max-w-full mt-3 lg:mt-0 text-center lg:text-left 
+        @apply py-4 px-8  rounded-2xl bg-primary hover:bg-primary-hover hover:text-[#151531] text-white w-full border-none  self-end max-w-full mt-3 lg:mt-0 text-center lg:text-left;
+        transition: background-color 350ms ease, color 350ms ease;
     }
 
     .table-container{

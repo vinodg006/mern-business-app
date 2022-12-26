@@ -1,4 +1,5 @@
 import React, { InputHTMLAttributes } from "react";
+import { useFormContext } from "react-hook-form";
 
 interface InputWithLabelProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -12,9 +13,10 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
   className,
   ...props
 }) => {
+  const { register } = useFormContext();
   return (
     <div className={`input-group  ${className}`}>
-      <label htmlFor={`id-${name}`} className="input-label">
+      <label htmlFor={name} className="input-label">
         {name}
       </label>
       <div className="flex space-x-2 items-center">
@@ -23,6 +25,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
           type="text"
           className="custom-input"
           {...props}
+          {...register(name, { required: true })}
         />
         {SuffixElement && (
           <button className="bg-primary  items-center justify-center w-9 h-9 border border-primary hidden lg:flex">

@@ -34,7 +34,7 @@ const Navbar: React.FC = ({ }) => {
         onClick={() => setOpenProfileMenu(!openProfileMenu)}
       >
         <UserCircleIcon className={` w-7 h-7 mr-2`} />
-        <div>{user.name}</div>
+        <div>{user?.name}</div>
         {openProfileMenu && (
           <div className="absolute top-[120%] right-0 w-[150%]  mx-auto p-1.5 bg-white dark:bg-slate-700 rounded shadow">
             <div

@@ -5,13 +5,13 @@ import Progress from "components/progress";
 import Container from "layouts/Container";
 import NotFound from "pages/NotFound";
 import React, { Suspense, useState } from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import routes, { MainPageRoute } from "./routes";
 
 const RouterComponent: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState<boolean>(true);
   return (
-    <HashRouter>
+    <Router>
       <Redirect mainRoute={MainPageRoute}>
         <Progress isAnimating={isAnimating} />
         <Routes>
@@ -60,7 +60,7 @@ const RouterComponent: React.FC = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Redirect>
-    </HashRouter>
+    </Router>
   );
 };
 export default RouterComponent;
